@@ -21,4 +21,4 @@ Reading all this, might actually suggest that creating a better & improved and m
 Since I already have a working .cmd (but not being able to hide windows for it) version, and the logic to all parts are basically done,
 I'll go for the Python version of that script first and then decide if I want to put effort into creating a better plugin.
 
-W O R K  I N  P R O G R E S S
+STATUS : active - start
