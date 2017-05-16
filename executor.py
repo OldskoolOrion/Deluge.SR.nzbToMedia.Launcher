@@ -44,11 +44,8 @@
 import sys, os
 from datetime import date
 
-# THIS FILE IS A SILLY PLACEHOLDER FOR WHAT IS GOING TO BE THE ACTUAL SCRIPT !!!!!!
-# CODE BELOW IS NOT TO BE TAKEN SERIOUS AND DOES NOTHING BUT MAKING ME REMEMBER THE
-# STRICT MANDATORY ARGUMENTS USED BY THE DELUGE EXECUTE PLUGIN !!!!!!!!!!!!!!!!!!!!
-#
-# invoke test on cli (example) :
+# PLACEHOLDER FOR FUTURE ACTUAL SCRIPT
+# CURRENTLY FACTUAL TESTDATA -> invoke test on cli (example) :
 # D:\_Development_\PortableGit\home\OldskoolOrion\Deluge.SR.nzbToMedia.Launcher\executor.py "d2d6a72b60cdb2cc5e80d3277d89d5df18c3ecbc" "Logan.2017.1080p.WEB-DL.DD5.1.H264-FGT" "D:\Feed.Me.Bytes\u.movie"
 
 if not len(sys.argv) == 4:
