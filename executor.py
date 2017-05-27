@@ -32,7 +32,8 @@
 
 #-------------------------------------------------------------------------------
 # Name      : executor.py
-# Version   : 0.1.2
+# Version   : 0.1.5
+# Last mod. : 2017.05.27
 # Created   : 2017.05.16
 # License   : MIT
 # Copyright : (c) 2017  -  Harold Coenen ( a.k.a. OldskoolOrion )
@@ -44,35 +45,43 @@
 import sys, os
 from datetime import date
 
-# PLACEHOLDER FOR FUTURE ACTUAL SCRIPT
-# CURRENTLY FACTUAL TESTDATA -> invoke test on cli (example) :
+# constants
+executeScript = "TorrentToMedia.py"
+executionPath = "D:\Feed.Me.Bytes\d.downloading\config"
+
+
+# TESTDATA -> invoke on cli :
 # D:\_Development_\PortableGit\home\OldskoolOrion\Deluge.SR.nzbToMedia.Launcher\executor.py "d2d6a72b60cdb2cc5e80d3277d89d5df18c3ecbc" "Logan.2017.1080p.WEB-DL.DD5.1.H264-FGT" "D:\Feed.Me.Bytes\u.movie"
 
-if not len(sys.argv) == 4:
-    exitCode = 5
-    print("** ERROR args total: Calling this launcher, you MUST specify THREE arguments AFTER the command itself, to make it work:")
-    print("                     -- 0) calling executed command itself - not counting this one")
-    print("                     -- 1) torrentID")
-    print("                     -- 2) torrentName")
-    print("                     -- 3) torrentPath")
-    print("** Number args rcvd: "+str(len(sys.argv)))
-    if not len(sys.argv) == 1:
-        print("** args list rcvd  : "+str(sys.argv))
-    else:
-        print("** args list rcvd  : ONLY THE CALLING COMMAND IN LIST - NO TRUE ARGUMENTS PASSED")
-    print("** ERROR exit      : Exiting launcher with ExitCode = 5 (ERR_ARGS_NR_NOT4_CMD_INCL)")
+exitCode = 4 - len(sys.argv)
+
+if not exitCode == 0:
+    print("** ERROR - Expecting 3 arguments. Check below for an example how to call this script:")
+    print("\n            cli>> path.to/executor.py \"< torrent-id >\"  \"< release-name >\"  \"< destination-path >\" ")
+    print("\n\n** NOTE  : <releaseName> can be a either a video-file, or the directory-name containing the content to process.")
+    print("\nErrorcode: "+str(exitCode))
     exit(exitCode)
 else:
-    exitCode    = 0
-    torrentID   = sys.argv[1]
-    torrentName = sys.argv[2]
-    torrentPath = sys.argv[3]
-    print(">> args list rcvd  : "+str(sys.argv))
-    print(">> split args to   : torrentID, torrentName, torrentPath")
-    print("                     -- 1) torrentID   : "+str(torrentID))
-    print("                     -- 2) torrentName : "+str(torrentName))
-    print("                     -- 3) torrentPath : "+str(torrentPath))
-    print("\n-- START PRE-POSTPROCESSING\n")
+    argumentList    = str(sys.argv)
+    torrentID       = sys.argv[1]
+    releaseName     = sys.argv[2]
+    destinationPath = sys.argv[3]
+
+    #preleminary structure the code will flow
+    # check if releasename points towards a directory containing the release or to a single file
+    #if isDirectory(releaseName):
+    #else:
+        # releaseName refers to single videofile - check for existance - create directory for the release and move the videofile in there
+        #if isExistingFile(releaseName):
+            # unflattenDirectory(releaseName)
+        #else:
+            exitCode = 0xFF
+            # throwErrorFileNotFound()
+
+if not exitCode == 0
+    print("** ERROR detected")
+    print("\nErrorcode: "+str(exitCode))
+
 
 exit(exitCode)
 
