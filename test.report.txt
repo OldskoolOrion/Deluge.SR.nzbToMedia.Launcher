@@ -1,0 +1,152 @@
+************* Module executor
+C:  5, 0: Trailing whitespace (trailing-whitespace)
+C: 13, 0: Trailing whitespace (trailing-whitespace)
+C: 20, 0: Trailing whitespace (trailing-whitespace)
+C: 23, 0: Trailing whitespace (trailing-whitespace)
+C: 46, 0: Line too long (204/100) (line-too-long)
+C: 48, 0: Line too long (242/100) (line-too-long)
+C: 49, 0: Line too long (135/100) (line-too-long)
+C: 50, 0: Line too long (108/100) (line-too-long)
+C: 51, 0: Line too long (234/100) (line-too-long)
+C: 52, 0: Line too long (242/100) (line-too-long)
+C: 67, 0: Exactly one space required before assignment
+preProcessed  = 0
+              ^ (bad-whitespace)
+C: 68, 0: Exactly one space required before assignment
+exitCode      = 4 - len(sys.argv)
+              ^ (bad-whitespace)
+C: 72, 0: Line too long (120/100) (line-too-long)
+C: 73, 0: Line too long (128/100) (line-too-long)
+C: 77, 0: Exactly one space required before assignment
+    argumentList    = str(sys.argv)
+                    ^ (bad-whitespace)
+C: 78, 0: Exactly one space required before assignment
+    torrentID       = sys.argv[1]
+                    ^ (bad-whitespace)
+C: 79, 0: Exactly one space required before assignment
+    releaseName     = sys.argv[2]
+                    ^ (bad-whitespace)
+C: 81, 0: Exactly one space required before assignment
+    combinedPath    = os.path.join(destinationPath, releaseName)
+                    ^ (bad-whitespace)
+C: 82, 0: Trailing whitespace (trailing-whitespace)
+C: 89, 0: Line too long (113/100) (line-too-long)
+C:101, 0: Line too long (101/100) (line-too-long)
+C:  1, 0: Missing module docstring (missing-docstring)
+C: 60, 0: Multiple imports on one line (sys, os) (multiple-imports)
+C: 64, 0: Invalid constant name "executeScript" (invalid-name)
+C: 65, 0: Invalid constant name "executionPath" (invalid-name)
+C: 67, 0: Invalid constant name "preProcessed" (invalid-name)
+C: 68, 0: Invalid constant name "exitCode" (invalid-name)
+C: 77, 4: Invalid constant name "argumentList" (invalid-name)
+C: 78, 4: Invalid constant name "torrentID" (invalid-name)
+C: 79, 4: Invalid constant name "releaseName" (invalid-name)
+C: 80, 4: Invalid constant name "destinationPath" (invalid-name)
+C: 81, 4: Invalid constant name "combinedPath" (invalid-name)
+C: 86, 8: Invalid constant name "preProcessed" (invalid-name)
+E: 88,11: Undefined variable 'path' (undefined-variable)
+C: 91,12: Invalid constant name "preProcessed" (invalid-name)
+C: 93,12: Invalid constant name "exitCode" (invalid-name)
+C: 97, 3: Consider changing "not exitCode == 0" to "exitCode != 0" (unneeded-not)
+W: 61, 0: Unused date imported from datetime (unused-import)
+
+
+Report
+======
+30 statements analysed.
+
+Statistics by type
+------------------
+
++---------+-------+-----------+-----------+------------+---------+
+|type     |number |old number |difference |%documented |%badname |
++=========+=======+===========+===========+============+=========+
+|module   |1      |1          |=          |0.00        |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|class    |0      |0          |=          |0           |0        |
++---------+-------+-----------+-----------+------------+---------+
+|method   |0      |0          |=          |0           |0        |
++---------+-------+-----------+-----------+------------+---------+
+|function |0      |0          |=          |0           |0        |
++---------+-------+-----------+-----------+------------+---------+
+
+
+
+Raw metrics
+-----------
+
++----------+-------+------+---------+-----------+
+|type      |number |%     |previous |difference |
++==========+=======+======+=========+===========+
+|code      |34     |32.08 |34       |=          |
++----------+-------+------+---------+-----------+
+|docstring |0      |0.00  |0        |=          |
++----------+-------+------+---------+-----------+
+|comment   |58     |54.72 |58       |=          |
++----------+-------+------+---------+-----------+
+|empty     |14     |13.21 |14       |=          |
++----------+-------+------+---------+-----------+
+
+
+
+Duplication
+-----------
+
++-------------------------+------+---------+-----------+
+|                         |now   |previous |difference |
++=========================+======+=========+===========+
+|nb duplicated lines      |0     |0        |=          |
++-------------------------+------+---------+-----------+
+|percent duplicated lines |0.000 |0.000    |=          |
++-------------------------+------+---------+-----------+
+
+
+
+Messages by category
+--------------------
+
++-----------+-------+---------+-----------+
+|type       |number |previous |difference |
++===========+=======+=========+===========+
+|convention |36     |36       |=          |
++-----------+-------+---------+-----------+
+|refactor   |0      |0        |=          |
++-----------+-------+---------+-----------+
+|warning    |1      |1        |=          |
++-----------+-------+---------+-----------+
+|error      |1      |1        |=          |
++-----------+-------+---------+-----------+
+
+
+
+Messages
+--------
+
++--------------------+------------+
+|message id          |occurrences |
++====================+============+
+|invalid-name        |12          |
++--------------------+------------+
+|line-too-long       |10          |
++--------------------+------------+
+|bad-whitespace      |6           |
++--------------------+------------+
+|trailing-whitespace |5           |
++--------------------+------------+
+|unused-import       |1           |
++--------------------+------------+
+|unneeded-not        |1           |
++--------------------+------------+
+|undefined-variable  |1           |
++--------------------+------------+
+|multiple-imports    |1           |
++--------------------+------------+
+|missing-docstring   |1           |
++--------------------+------------+
+
+
+
+
+--------------------------------------------------------------------
+Your code has been rated at -4.00/10 (previous run: -4.00/10, +0.00)
+

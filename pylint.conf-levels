@@ -1,0 +1,4 @@
+HIGH              : No false positive possible.
+INFERENCE         : Warning based on inference result.
+INFERENCE_FAILURE : Warning based on inference with failures.
+UNDEFINED         : Warning without any associated confidence level.
