@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """
 ----------------------------------------------------------------------------------------------------
@@ -39,73 +39,68 @@ E-mail          : OldskoolOrion@gmail.com
 Scriptlocation  : https://github.com/OldskoolOrion/Deluge.SR.nzbToMedia.Launcher.git
 """
 
-####################################################################################################
-############
-##
-##  STEPS TO TAKE :
-##  Run As (Dictated by Deluge) :
-##      executor.py "d2d6a72b60cdb2cc5e80d3277d89d5df18c3ecbc" "Name.S01E01.720p.WEBRip.H264-GRP" \
-##                  "D:\TorrentDL\u.series"
-##  Check if PARAM 2 is file or directory :
-##      D:\TorrentDL\u.series\Name.S01E01.720p.WEBRip.H264-GRP(.mkv) ??
-##          -> note : Extremely basic but therefor easy to overlook check!
-##             Initiating torrent downloads by scripts using magnet-links, sometimes prevents you
-##             from noticing the movie/serie-episode download is not in a folder of it's own.
-##             Usually this is standard practice. Is there just one single file not in a folder ?
-##             This of course has consequences when trying to tidy/clean the release from as much
-##             unnecessary extra files and even worse (malware/virus).
-##             Imagine not checking : chdir to a file instead of folder - script will not halt, but
-##             no directory change was made. Still in script directory the script starts cleaning.
-##             You could lose all your scripts / other files, or at least spending time restoring
-##             a backup. Prevent extra work.- automation is the goal : not extra work!
-##  Clean Folder after handling possible exception, based on experience :
-##      D:\TorrentDL\u.series\Name.S01E01.720p.WEBRip.H264-GRP
-##          Filemasks which are being deleted for movies / serie-episodes :
-##              - *.links    - *.nfo    - *.bat
-##              - *.exe      - *.chm    - *.cmd
-##              - *.nzb      - *.par    - *.vbs
-##              - *.par2     - *.sfv    - *.ps1
-##              - *.srr      - *.jpg    - *.js
-##              - *.png      - *.bmp    - *.py
-##              - *.ico      - *.txt    - *.[docx|xlsx|pptx]
-##              - *.[1..99]  - *.OSX (and OSX typical files)
-##              - RARBG.*    - *.(thumbs db)
-##              - *.pdf      - Goedkoop*.rar
-##              (and so on.. edit list for personal preference / need)
-##          Comparable to what is often done with a batchfile function under Windows (example) :
-##          >> FOR %%g IN ( *.nzb *.par2 *.par *.sfv *.srr *.jpg *.gif *.png *.txt *.nfo *.url \
-##          >>              Q-for-You.* *.exe *.chm *._Contents *.plist *.wflow *.workflow RARBG.* \
-##          >>              Goedkoop*.rar ) DO ( DEL "%%g" )
-##  Check videocontainer's first audiostream :
-##      If not produced as E-AC3 stream, then continue to the next step.
-##      If it IS E-AC3 instead of the standard A-AC3 codec, then perform in the background :
-##          - rename container to *.eac3.mkv
-##          - using FFMpeg leave videostream & subtitlestreams untouched
-##          - just reencode audiostream from E-AC3 into A-AC3 and recombine this stream, with the
-##            untouched video & subtitles. This saves A LOT time compared to transcode or full
-##            reencode (as nzbToMedia (see next step) performs.
-##          - when starting the FFMpeg execution, also start a monitor on FFMpeg's ProcessID :
-##            on end of ProcessID delete *.eac3.mkv. This ensures removal of correct input, when
-##            multiple postprocessing threads run ( multiprocessing + nonblocking code ).
-##          - After deleting the file continue to the next step
-##  Continue postprocessing using nzbToMedia's scripts :
-##      Calling nzbToMedia gives additional perk of FDH (failed download handling), when being
-##      coupled to SickRage as main serie-episodes management centre. The proliferation of fakes,
-##      incompletes, corrupt files, codec scams, propagation issues, upload glitches and
-##      DMCA takedowns can break the automation process and requires user intervention.
-##      Not what we want.. we want full automation, with no waiting time!
-##      >> ISSUE : pyw TorrentToMedia.py "193593c6678281cc3fd2b4e23232747c4855820f" \
-##                                       "Name.S01E01.720p.WEBRip.H264-GRP" "D:\TorrentDL\u.series"
-##      End-of-Script!
-##  IMPORTANT: path-notation under Windows sometimes changes :
-##                 * usually pathnotation under Windows   :  "D:\etc"
-##                 * occasionally pathnotation found like :  "\\?\D:\etc"
-##             Make sure both forms are dealt with correctly! Easy string replace would do the
-##             trick (from Windows batch script as example) :
-##                 ' SET resultdir=%~3\%~2 ' and then ' SET resultdir=%resultdir:\\?\=% '
-##
-############
-####################################################################################################
+#  STEPS TO TAKE :
+#  Run As (Dictated by Deluge) :
+#      executor.py "d2d6a72b60cdb2cc5e80d3277d89d5df18c3ecbc" "Name.S01E01.720p.WEBRip.H264-GRP" \
+#                  "D:\TorrentDL\u.series"
+#  Check if PARAM 2 is file or directory :
+#      D:\TorrentDL\u.series\Name.S01E01.720p.WEBRip.H264-GRP(.mkv) ??
+#          -> note : Extremely basic but therefor easy to overlook check!
+#             Initiating torrent downloads by scripts using magnet-links, sometimes prevents you
+#             from noticing the movie/serie-episode download is not in a folder of it's own.
+#             Usually this is standard practice. Is there just one single file not in a folder ?
+#             This of course has consequences when trying to tidy/clean the release from as much
+#             unnecessary extra files and even worse (malware/virus).
+#             Imagine not checking : chdir to a file instead of folder - script will not halt, but
+#             no directory change was made. Still in script directory the script starts cleaning.
+#             You could lose all your scripts / other files, or at least spending time restoring
+#             a backup. Prevent extra work.- automation is the goal : not extra work!
+#  Clean Folder after handling possible exception, based on experience :
+#      D:\TorrentDL\u.series\Name.S01E01.720p.WEBRip.H264-GRP
+#          Filemasks which are being deleted for movies / serie-episodes :
+#              - *.links    - *.nfo    - *.bat
+#              - *.exe      - *.chm    - *.cmd
+#              - *.nzb      - *.par    - *.vbs
+#              - *.par2     - *.sfv    - *.ps1
+#              - *.srr      - *.jpg    - *.js
+#              - *.png      - *.bmp    - *.py
+#              - *.ico      - *.txt    - *.[docx|xlsx|pptx]
+#              - *.[1..99]  - *.OSX (and OSX typical files)
+#              - RARBG.*    - *.(thumbs db)
+#              - *.pdf      - Goedkoop*.rar
+#              (and so on.. edit list for personal preference / need)
+#          Comparable to what is often done with a batchfile function under Windows (example) :
+#          >> FOR %%g IN ( *.nzb *.par2 *.par *.sfv *.srr *.jpg *.gif *.png *.txt *.nfo *.url \
+#          >>              Q-for-You.* *.exe *.chm *._Contents *.plist *.wflow *.workflow RARBG.* \
+#          >>              Goedkoop*.rar ) DO ( DEL "%%g" )
+#  Check videocontainer's first audiostream :
+#      If not produced as E-AC3 stream, then continue to the next step.
+#      If it IS E-AC3 instead of the standard A-AC3 codec, then perform in the background :
+#          - rename container to *.eac3.mkv
+#          - using FFMpeg leave videostream & subtitlestreams untouched
+#          - just reencode audiostream from E-AC3 into A-AC3 and recombine this stream, with the
+#            untouched video & subtitles. This saves A LOT time compared to transcode or full
+#            reencode (as nzbToMedia (see next step) performs.
+#          - when starting the FFMpeg execution, also start a monitor on FFMpeg's ProcessID :
+#            on end of ProcessID delete *.eac3.mkv. This ensures removal of correct input, when
+#            multiple postprocessing threads run ( multiprocessing + nonblocking code ).
+#          - After deleting the file continue to the next step
+#  Continue postprocessing using nzbToMedia's scripts :
+#      Calling nzbToMedia gives additional perk of FDH (failed download handling), when being
+#      coupled to SickRage as main serie-episodes management centre. The proliferation of fakes,
+#      incompletes, corrupt files, codec scams, propagation issues, upload glitches and
+#      DMCA takedowns can break the automation process and requires user intervention.
+#      Not what we want.. we want full automation, with no waiting time!
+#      >> ISSUE : pyw TorrentToMedia.py "193593c6678281cc3fd2b4e23232747c4855820f" \
+#                                       "Name.S01E01.720p.WEBRip.H264-GRP" "D:\TorrentDL\u.series"
+#      End-of-Script!
+#  IMPORTANT: path-notation under Windows sometimes changes :
+#                 * usually pathnotation under Windows   :  "D:\etc"
+#                 * occasionally pathnotation found like :  "\\?\D:\etc"
+#             Make sure both forms are dealt with correctly! Easy string replace would do the
+#             trick (from Windows batch script as example) :
+#                 ' SET resultdir=%~3\%~2 ' and then ' SET resultdir=%resultdir:\\?\=% '
+
 
 # import modules
 import sys
@@ -124,9 +119,9 @@ if __name__ == "__main__":
 
     if not EXITCODE == 0:
         print("** ERROR - 3 arguments expected. See below how to call this script:")
-        print("\n            >> path.to/executor.py \"< torrent-id >\"  \"< release-name >\""\
+        print("\n            >> path.to/executor.py \"< torrent-id >\"  \"< release-name >\""
               " \"< destination-path >\" ")
-        print("\n\n** NOTE  : <releaseName> can be a either a video-file, or the directory-name"\
+        print("\n\n** NOTE  : <releaseName> can be a either a video-file, or the directory-name"
               " containing the content to process.")
         print("\nErrorcode: "+str(EXITCODE))
         exit(EXITCODE)
@@ -139,7 +134,7 @@ if __name__ == "__main__":
 
         if os.path.isdir(COMBINEDPATH):
             print("\nEntering directory : "+str(COMBINEDPATH))
-            #change into directory and clean unwanted files
+            # change into directory and clean unwanted files
             PREPROCESSED = 1
         else:
             if os.path.isfile(COMBINEDPATH):
